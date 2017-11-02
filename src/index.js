@@ -23,16 +23,16 @@ export function startGame(game) {
   const username = askUsername();
 
   while (!isUserFinishedGame()) {
-    const question = game.makeQuestion();
-    const answer = askQuestion(question);
-    const correctAnswer = game.getCorrectAnswer(question);
-    const isCorrectAnswer = answer === correctAnswer;
+    const { question, correctAnswer } = game.getData();
+    const userAnswer = askQuestion(question);
+    const isCorrectAnswer = userAnswer === correctAnswer;
     if (isCorrectAnswer) {
       console.log('Correct!');
       countOfRightAnswers += 1;
     } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
       console.log(`Let's try again, ${username}!\n`);
+      return;
     }
   }
 
