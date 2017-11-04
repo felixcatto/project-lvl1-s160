@@ -4,6 +4,5 @@
 ## Installation
 make install
 
-
 ## Launch
-make start
+see Makefile for all available games
