@@ -3,7 +3,6 @@ import readlineSync from 'readline-sync';
 
 let countOfRightAnswers = 0;
 const countAnswersForWin = 3;
-const isUserFinishedGame = () => countOfRightAnswers === countAnswersForWin;
 
 export function askUsername() {
   const username = readlineSync.question('May I have your name? ');
@@ -18,6 +17,7 @@ function askQuestion(question) {
 }
 
 export function startGame(game) {
+  const isUserFinishedGame = () => countOfRightAnswers === countAnswersForWin;
   console.log('Welcome to the Brain Games!');
   console.log(`${game.description}\n`);
   const username = askUsername();
