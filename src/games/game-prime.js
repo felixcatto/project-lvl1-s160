@@ -1,30 +1,25 @@
 import { startGame } from '../index';
 
 
-function makeRangeInclusive(start, end) {
-  return Array.from(Array(end - start + 1).keys()).map(el => el + start);
-}
+function isNumberAPrime(n) {
+  if (n <= 1) {
+    return false;
+  } else if (n <= 3) {
+    return true;
+  } else if (n % 2 === 0 || n % 3 === 0) {
+    return false;
+  }
 
-function makePrimeNumbers(number) {
-  if (number <= 1) return [];
-
-  const range = makeRangeInclusive(2, number);
-  const iter = (acc, indexOfFilterNumber) => {
-    if (indexOfFilterNumber + 1 === acc.length) {
-      return acc;
+  let i = 5;
+  while (i * i <= n) {
+    if (n % i === 0 || n % (i + 2) === 0) {
+      return false;
     }
 
-    const filterNumber = acc[indexOfFilterNumber];
-    const newAcc = acc.filter((el, i) => el % filterNumber !== 0 || i <= indexOfFilterNumber);
-    return iter(newAcc, indexOfFilterNumber + 1);
-  };
+    i += 6;
+  }
 
-  return iter(range, 0);
-}
-
-function isNumberAPrime(number) {
-  const primeNumbers = makePrimeNumbers(number);
-  return primeNumbers.includes(number);
+  return true;
 }
 
 const gameOptions = {
