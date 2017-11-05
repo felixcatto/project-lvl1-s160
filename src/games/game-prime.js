@@ -1,25 +1,26 @@
 import { startGame } from '../index';
 
 
-function isNumberAPrime(n) {
-  if (n <= 1) {
+function isNumberAPrime(number) {
+  if (number <= 1) {
     return false;
-  } else if (n <= 3) {
+  } else if (number <= 3) {
     return true;
-  } else if (n % 2 === 0 || n % 3 === 0) {
-    return false;
   }
 
-  let i = 5;
-  while (i * i <= n) {
-    if (n % i === 0 || n % (i + 2) === 0) {
+  const iter = (divisor) => {
+    if (divisor === number) {
+      return true;
+    }
+
+    if (number % divisor === 0) {
       return false;
     }
 
-    i += 6;
-  }
+    return iter(divisor + 1);
+  };
 
-  return true;
+  return iter(2);
 }
 
 const gameOptions = {
